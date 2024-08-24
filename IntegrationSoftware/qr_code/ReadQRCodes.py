@@ -1,11 +1,12 @@
 from PIL import Image, ImageDraw
 from pyzbar.pyzbar import decode
+import io
 
-def read_qr_codes(image_path):
+def read_qr_codes(image_path,bottels):
     # Open the image file
     img = Image.open(image_path)
     draw = ImageDraw.Draw(img)
-
+    
     # Decode QR codes in the image
     qr_codes = decode(img)
     results = []
@@ -25,18 +26,19 @@ def read_qr_codes(image_path):
         draw.rectangle([
             (position['x'], position['y']),
             (position['x'] + position['width'], position['y'] + position['height'])
-        ], outline='red', width=7)
+        ], outline='Green', width=20)
         
         results.append({
             'index': index,
             'data': qr_data,
-            'position': position
+            'Bottles':bottels
+            # 'position': position
         })
-
+    path = "annotated_image.png"
     # Save or show the image with bounding boxes
-    img.save('annotated_image.png')  # Save with bounding boxes
-    img.show()  # Display the image
+    img.save(path)  # Save with bounding boxes
+   
 
-    return results
+    return results,path
 
 
