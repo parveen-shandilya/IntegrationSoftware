@@ -2,6 +2,7 @@ import cv2
 from flask import Flask, jsonify ,render_template,url_for,send_file
 import numpy as np
 from qr_code.ReadQRCodes import read_qr_codes
+from qr_code.camera import captureImage
 from flask import request
 import os
 from flask_cors import CORS
@@ -42,6 +43,12 @@ def ReadQR_Codes():
     
     return jsonify({"data":l,"image":encoded_string})
 
-@app.route('/get-image')
-def get_image(image_name):
-    return send_file(image_name, mimetype='image/jpeg')
+# @app.route('/get-image')
+# def get_image(image_name):
+#     return send_file(image_name, mimetype='image/jpeg')
+
+
+# @app.route('/capture-image')
+# def get_image():
+#     image_Path = captureImage()
+#     return image_Path
