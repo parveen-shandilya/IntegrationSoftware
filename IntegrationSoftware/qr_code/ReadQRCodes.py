@@ -26,7 +26,7 @@ def read_qr_codes(image_path,bottels):
         draw.rectangle([
             (position['x'], position['y']),
             (position['x'] + position['width'], position['y'] + position['height'])
-        ], outline='Green', width=20)
+        ], outline='red', width=10)
         
         results.append({
             'index': index,
